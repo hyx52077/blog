@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069) -->
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport" ,="" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>新手教程</title>
+		<script src="help/jquery.min.js"></script>
+		<style>
+			@media only screen and (max-width: 359px) {
+				html {
+					font-size: 14px;
+				}
+				.clock {
+					margin-top: 0.3rem;
+					width: 16px;
+				}
+				.remind {
+					bottom: 2.6rem;
+				}
+			}
+			
+			@media only screen and (min-width: 360px) {
+				html {
+					font-size: 16px;
+				}
+				.clock {
+					margin-top: 0.27rem;
+					width: 20px;
+				}
+				.content_out {
+					width: 77%;
+				}
+				.remind {
+					bottom: 2.5rem;
+				}
+			}
+			
+			@media only screen and (max-height: 559px) {
+				.content_out {
+					width: 68.5%;
+				}
+			}
+			
+			@media only screen and (min-height: 560px) {
+				.content_out {
+					width: 82.5%;
+				}
+			}
+			
+			body {
+				margin: 0;
+				padding: 0;
+				position: relative;
+				max-width: 720px;
+				margin: 0 auto;
+			}
+			
+			ul,
+			ol,
+			li,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			b,
+			i,
+			p {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-style: normal;
+				font-weight: normal;
+			}
+			
+			img {
+				display: block;
+			}
+			
+			a {
+				text-decoration: none
+			}
+			
+			.content_in img {
+				float: left;
+			}
+			
+			.footer {
+				width: 100%;
+				position: fixed;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				bottom: 0;
+				border-top: 1px solid #dddddd;
+				text-align: center;
+				max-width: 720px;
+				margin: 0 auto;
+				background: #fff;
+			}
+			
+			.new_book {
+				font-size: 1.0rem;
+				color: #2e2e2e;
+			}
+			
+			.footer_in {
+				position: relative;
+				width: 94%;
+				margin: 0 auto;
+			}
+			
+			.footer_l {
+				position: absolute;
+				left: 0;
+				top: 0.6rem;
+				max-width: 20.3px;
+			}
+			
+			.footer_r {
+				position: absolute;
+				right: 0;
+				top: 0.6rem;
+				max-width: 20.3px;
+			}
+			
+			.content_out {
+				position: relative;
+				margin: 0 auto;
+				height: auto;
+			}
+			/* 提示 */
+			
+			.remind {
+				position: fixed;
+				left: 0;
+				width: 100%;
+				/* max-width:720px;  */
+				margin: 0 auto;
+				color: #2b2b2b;
+				z-index: 1;
+			}
+			
+			.remind li {
+				padding: 0.2rem 3%;
+				width: 94%;
+				margin: 0 auto;
+				border-top: 1px solid #e2e2e2;
+				display: none;
+				background: #fff;
+				font-size: 0.85rem;
+			}
+			
+			.remind li:nth-of-type(1) {
+				display: block;
+			}
+			/* 电话 外壳*/
+			
+			.phone {
+				margin: 3% auto 0;
+			}
+			
+			.content_in {
+				position: absolute;
+				top: 10.5%;
+				width: 90.7%;
+				height: 84%;
+				margin-left: 4.65%;
+			}
+			
+			.step1 {
+				overflow-y: scroll;
+				overflow-x: hidden;
+				-webkit-overflow-scrolling: touch;
+				overflow: scroll;
+			}
+			
+			.ovfHidden {
+				overflow: hidden;
+				height: 100%;
+			}
+			/*body,html{overflow:hidden; height:100%;}*/
+			
+			.content_in.current {
+				overflow: hidden;
+				height: 100%;
+			}
+			
+			.step1_out {
+				position: absolute;
+				top: 45%;
+				width: 100%;
+			}
+			
+			.step1_in {
+				position: relative;
+			}
+			
+			.kuang {
+				position: absolute;
+				top: 0;
+				width: 60%;
+				padding: 0.5rem 0;
+				background: #ffa507;
+				border-radius: 10rem;
+				margin-left: 20%;
+				text-align: center;
+				color: #fff;
+				font-size: 1.0rem;
+			}
+			
+			.hand_up {
+				position: absolute;
+				top: 0;
+				right: -5%;
+				margin-top: -10%;
+				-webkit-animation: run3 1.5s infinite;
+				animation: run3 1.5s infinite;
+				z-index: 4;
+			}
+			
+			.click01 {
+				position: relative;
+				width: 100%;
+			}
+			
+			.click01_in { 
+				position: absolute;
+				bottom: 2%;
+			    left: 25%;
+			    width: 30%;
+			    height: 26%;
+				/*border:1px solid green;*/
+				display: none;
+			}
+			
+			.click01_in .hand_00,
+			.hand {
+				position: absolute;
+				margin-left: 41%;
+				margin-top: 13%;
+				z-index: 2;
+			}
+			
+			.click01_in .hand_00 {
+				z-index: 0;
+			}
+			
+			.choose {
+				width: 58%;
+				margin-left: 21%;
+				top: auto;
+				bottom: -79%;
+				display: none;
+			}
+			
+			.click01_2_in {
+				position: absolute;
+				bottom: 0%;
+				right: 15%;
+				width: 30%;
+				height: 113%;
+				/* border:1px solid green; */
+				z-index: 2;
+				display: none;
+			}
+			
+			.click01_2_in2 {
+				/* border:1px solid green; */
+				z-index: 4;
+			}
+			
+			.Shopping_Cart {
+				position: absolute;
+				right: 25%;
+				top: 18%;
+			}
+			
+			.step1_out2 {
+				position: absolute;
+				top: 87%;
+				right: 13%;
+				width: 100%;
+				display: none;
+			}
+			
+			.hand_01 {
+				position: absolute;
+				right: -1%;
+				top: 0;
+				margin-top: 2%;
+				z-index: 2;
+			}
+			
+			.circle {
+				position: absolute;
+				top: 5%;
+				left: 37%;
+				width: 40%;
+				height: 80%;
+				border-radius: 100%;
+				background: rgba(0, 0, 0, 0.4);
+				-webkit-animation: run 0.7s infinite;
+				animation: run 0.7s infinite;
+			}
+			
+			.click01_1 .circle {
+				margin-top: 7%;
+				margin-left: 5%;
+			}
+			
+			.step1_out1 .circle2 {
+				position: absolute;
+				display: block;
+				top: 0;
+				right: 0;
+				margin-top: -6%;
+				margin-right: 18%;
+				width: 1.8rem;
+				height: 1.8rem;
+				border-radius: 100%;
+				background: rgba(0, 0, 0, 0.4);
+				-webkit-animation: run2 1.5s infinite;
+				animation: run2 1.5s infinite;
+			}
+			
+			.step1_out1 {
+				display: block;
+			}
+			/* .click01_1{display:none;} */
+			/* .step1_out2{display:none;} */
+			/* .circle1{display:none;} */
+			/* .look{display:none;} */
+			/* .step1_all{display:none;} */
+			
+			.look {
+				width: 190%;
+				margin-left: -146%;
+				top: -65%;
+			}
+			
+			@keyframes run {
+				0% {
+					width: 39%;
+					height: 78%;
+				}
+				25% {
+					width: 40%;
+					height: 80%;
+				}
+				50% {
+					width: 45%;
+					height: 90%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 39%;
+					height: 78%;
+				}
+			}
+			
+			@-webkit-keyframes run {
+				0% {
+					width: 39%;
+					height: 78%;
+				}
+				25% {
+					width: 40%;
+					height: 80%;
+				}
+				50% {
+					width: 45%;
+					height: 90%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 39%;
+					height: 78%;
+				}
+			}
+			
+			@keyframes run2 {
+				0% {
+					width: 1.8rem;
+					height: 1.8rem;
+					margin-top: -6%;
+				}
+				1% {
+					background: rgba(0, 0, 0, 0.2);
+				}
+				25% {
+					width: 1.9rem;
+					height: 1.9rem;
+				}
+				99% {
+					width: 2rem;
+					height: 2rem;
+					background: rgba(0, 0, 0, 0.2);
+					margin-top: -25%;
+				}
+				100% {
+					width: 1.8rem;
+					height: 1.8rem;
+					margin-top: -6%;
+				}
+			}
+			
+			@-webkit-keyframes run2 {
+				0% {
+					width: 1.8rem;
+					height: 1.8rem;
+					margin-top: -6%;
+				}
+				1% {
+					background: rgba(0, 0, 0, 0.2);
+				}
+				25% {
+					width: 1.9rem;
+					height: 1.9rem;
+				}
+				99% {
+					width: 2rem;
+					height: 2rem;
+					background: rgba(0, 0, 0, 0.2);
+					margin-top: -25%;
+				}
+				100% {
+					width: 1.8rem;
+					height: 1.8rem;
+					margin-top: -6%;
+				}
+			}
+			
+			@keyframes run3 {
+				0% {
+					margin-top: -11%;
+				}
+				99% {
+					margin-top: -30%;
+				}
+				100% {
+					margin-top: -11%;
+				}
+			}
+			
+			@-webkit-keyframes run3 {
+				0% {
+					margin-top: -11%;
+				}
+				99% {
+					margin-top: -30%;
+				}
+				100% {
+					margin-top: -11%;
+				}
+			}
+			/*页面2*/
+			
+			.step2_all {
+				display: none;
+			}
+			
+			.step_in {
+				position: relative;
+				width: 100%;
+			}
+			
+			.hand_02 {
+			    margin-left: 45%;
+			 	margin-top: -22%;
+			}
+			
+			.add {
+				width: 68%;
+				margin-top: 62%;
+				margin-left: 5%;
+			}
+			
+			.step2_in .circle {
+				width: 10%;
+				height: 20%;
+			    top: 60%;
+    			left: 47.5%;
+				-webkit-animation: run2_1 1.5s infinite;
+				animation: run2_1 1.5s infinite;
+			}
+			
+			.step2_click {
+				position: absolute;
+				top: 59%;
+				left: 46%;
+				width: 22%;
+				height: 26%;
+				/*border:1px solid green;*/
+				z-index: 2;
+			}
+			
+			@keyframes run2_1 {
+				0% {
+					width: 10%;
+					height: 20%;
+				}
+				50% {
+					width: 12%;
+					height: 24%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 10%;
+					height: 20%;
+				}
+			}
+			
+			@-webkit-keyframes run2_1 {
+				0% {
+					width: 10%;
+					height: 20%;
+				}
+				50% {
+					width: 12%;
+					height: 24%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 10%;
+					height: 20%;
+				}
+			}
+			/*页面3*/
+			
+			.step3_all {
+				display: none;
+			}
+			
+			.hand_03 {
+				margin-left: 27%;
+				margin-top: -17%;
+			}
+			
+			.reduce {
+				width: 68%;
+				margin-top: 62%;
+				margin-right: 5%;
+			}
+			
+			.step3_in .circle {
+				width: 10%;
+				height: 20%;
+				top: 66%;
+				left: 28%;
+				-webkit-animation: run2_1 1.5s infinite;
+				animation: run2_1 1.5s infinite;
+			}
+			
+			.step3_click {
+				position: absolute;
+				top: 59%;
+				left: 23%;
+				width: 22%;
+				height: 26%;
+				/*border:1px solid green;*/
+				z-index: 2;
+			}
+			/*页面4*/
+			
+			.step4_all {
+				display: none;
+			}
+			
+			.step4_all .content_in {
+				overflow-y: visible;
+			}
+			
+			.hand_04 {
+				right: -8%;
+				margin-top: -25%;
+			}
+			
+			.submit {
+				width: 68%;
+				margin-top: -20%;
+				margin-left: 16%;
+			}
+			
+			.step4_in .circle {
+				width: 10%;
+				height: 32%;
+				top: 16%;
+				right: 4%;
+				left: auto;
+				-webkit-animation: run4 1.5s infinite;
+				animation: run4 1.5s infinite;
+			}
+			
+			.step4_click {
+				position: absolute;
+				top: 2%;
+				right: 2%;
+				width: 30%;
+				height: 48%;
+				/*border:1px solid green;*/
+				z-index: 2;
+			}
+			
+			@keyframes run4 {
+				0% {
+					width: 10%;
+					height: 34.5%;
+				}
+				50% {
+					width: 12%;
+					height: 41.4%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 10%;
+					height: 32%;
+				}
+			}
+			
+			@-webkit-keyframes run4 {
+				0% {
+					width: 10%;
+					height: 32%;
+				}
+				50% {
+					width: 12%;
+					height: 41.4%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 10%;
+					height: 32%;
+				}
+			}
+			/*页面5*/
+			
+			.step5_all {
+				display: none;
+			}
+			
+			.step5_all .content_in {
+				overflow-y: visible;
+			}
+			
+			.hand_05 {
+		    right: 9%;
+    			margin-top: -37%;
+			}
+			
+			.submit {
+			    width: 68%;
+			    margin-top: 93%;
+			    margin-left: 16%;
+			}
+			
+			.step5_in .circle {   
+				    width: 10%;
+    height: 10%;
+			    top: 57.1%;
+			    right: 20%;
+				left: auto;
+				-webkit-animation: run5 1.5s infinite;
+				animation: run5 1.5s infinite;
+			}
+			
+			.step5_click {
+		    	position: absolute;
+			    top: 52%;
+			    right: 2%;
+			    width: 96%;
+			    height: 16%;
+				/*border:1px solid green;*/
+				z-index: 2;
+			}
+			/*页面6*/
+			
+			.step6_all {
+				display: none;
+			}
+			
+			.step6_all .content_in {
+				overflow-y: visible;
+			}
+			
+			.hand_06 {
+			    right: 14%;
+    			margin-top: -12%;
+			}
+			
+			.submit {
+				width: 68%;
+				margin-top: 100%;
+				margin-left: 16%;
+			}
+			
+			.step6_in .circle {
+			    width: 10%;
+			    height: 21%;
+			    top: 84%;
+			    right: 26%;
+			    left: auto;
+				-webkit-animation: run5 1.5s infinite;
+				animation: run5 1.5s infinite;
+			}
+			
+			.step6_click {
+				position: absolute;
+				top: 69%;
+				right: 2%;
+				width: 96%;
+				height: 35%;
+				/*border:1px solid green;*/
+				z-index: 2;
+			}
+			
+			@keyframes run5 {
+				0% {
+					width: 25px;
+					height: 25px;
+				}
+				50% {
+					width: 35px;
+					height: 35px;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 25px;
+					height: 10%;
+				}
+			}
+			
+			@-webkit-keyframes run5 {
+				0% {
+					width: 25px;
+					height: 25px;
+				}
+				50% {	
+					width: 35px;
+					height: 35px;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 25px;
+					height: 25px;
+				}
+			}
+			/*页面7*/
+			
+			.step7_all {
+				display: none;
+			}
+			
+			.step7_all .content_in {
+				overflow-y: visible;
+			}
+			
+			.hand_07 {
+				right: 7%;
+    			margin-top: -15%;
+			}
+			
+			.submit2 {
+				width: 78%;
+				margin-top: 94%;
+				margin-left: 11%;
+			}
+			
+			.step7_in .circle {
+				width: 10%;
+			    height: 17%;
+			    top: 77%;
+			    right: 19.5%;
+			    left: auto;
+				-webkit-animation: run6 1.5s infinite;
+				animation: run6 1.5s infinite;
+			}
+			
+			.step7_click {
+			    position: absolute;
+			    top: 75%;
+			    right: 2%;
+			    width: 49%;
+			    height: 24%;
+				/*border:1px solid green; */
+				z-index: 2;
+			}
+			
+			@keyframes run6 {
+				0% {
+					width: 10%;
+					height: 17%;
+				}
+				50% {
+					width: 12%;
+					height: 20.4%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 10%;
+					height: 17%;
+				}
+			}
+			
+			@-webkit-keyframes run6 {
+				0% {
+					width: 10%;
+					height: 17%;
+				}
+				50% {
+					width: 12%;
+					height: 20.4%;
+					background: rgba(0, 0, 0, 0.2);
+				}
+				100% {
+					width: 10%;
+					height: 17%;
+				}
+			}
+			/*页面8*/
+			
+			.step8_all {
+				display: none;
+			}
+			
+			.step8_all .content_in {
+				overflow-y: visible;
+			}
+			/* .content_in .1_01, .1_02, .1_03, .1_04, .1_05{float:left;} */
+		</style>
+	</head>
+
+	<body>
+		<div class="content_out">
+			<img class="phone" src="./help/phone.png" width="100%">
+			<div class="step1_all">
+				<div class="content_in step1">
+					<a href="#1_05"><img class="1_01" src="./help/1_01.jpg" width="100%"></a>
+					<a href="#1_05"><img class="1_02" src="./help/1_02.jpg" width="100%"></a>
+					<a href="#1_05"><img class="1_03" src="./help/1_03.jpg" width="100%"></a>
+					<img class="1_04" src="./help/1_04.jpg" width="100%">
+					<div class="click01 click01_1">
+						<img id="1_05" class="1_05" src="./help/1_05.jpg" width="100%">
+						<a href="#click01_2"><span class="click01_in" style="display: none;">
+<span class="circle"></span>
+							<img class="hand_00 hand hand_short" src="./help/hand_short.png" width="84%">
+							<img class="hand_00 hand hand_long" src="./help/hand_long.png" width="84%" style="display: block;">
+							</span>
+						</a>
+						<span class="choose kuang" style="display: none;">选择喜欢的商品</span>
+					</div>
+					<img class="1_06" src="./help/1_06.jpg" width="100%">
+					<div class="click01 click01_2" id="click01_2">
+						<img class="1_07" src="./help/1_07.jpg" width="100%">
+						<span class="click01_2_in" style="display: none;">
+<img class="Shopping_Cart" src="./help/Shopping_Cart.png" width="20%">
+<span class="circle circle1"></span>
+						<span class="look kuang">查看购物车商品</span>
+						</span>
+						<span class="click01_2_in click01_2_in2" style="display: none;">
+</span>
+					</div>
+				</div>
+				<div class="step1_out step1_out1">
+					<div class="step1_in step1_in1">
+						<a href="#1_05"><span class="slide_up kuang">向上滑动 or 点我</span></a>
+						<span class="circle2"></span>
+						<img class="hand_up" src="./help/hang_long2.png" width="30%">
+					</div>
+				</div>
+				<div class="step1_out step1_out2" style="display: none;">
+					<div class="step1_in step1_in2">
+						<img class="hand_01 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_01 hand hand_long" src="./help/hand_long.png" width="24%" style="display: block;">
+					</div>
+				</div>
+				<ol class="remind remind1">
+					<li>向下滑动选择自己喜欢的商品</li>
+					<li>2.点击购物车查看购物车清单</li>
+				</ol>
+			</div>
+			<div class="step2_all">
+				<div class="content_in step2">
+					<div class="step2_in step_in">
+						<img src="./help/2_01.jpg" width="100%">
+						<img class="hand_02 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_02 hand hand_long" src="./help/hand_long.png" width="24%" style="display: block;">
+						<span class="add kuang">增加购买金额（+）</span>
+						<span class="circle"></span>
+						<span class="step2_click"></span>
+					</div>
+					<img src="./help/2_02.jpg" width="100%">
+					<img src="./help/2_03.jpg" width="100%">
+				</div>
+				<ol class="remind remind2">
+					<li>点击“+”增加购买人次</li>
+				</ol>
+			</div>
+			<div class="step3_all">
+				<div class="content_in step3">
+					<div class="step3_in step_in">
+						<img src="./help/3_01.jpg" width="100%">
+						<img class="hand_03 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_03 hand hand_long" src="./help/hand_long.png" width="24%" style="display: block;">
+						<span class="reduce kuang">减少购买金额（-）</span>
+						<span class="circle"></span>
+						<span class="step3_click"></span>
+					</div>
+					<img src="./help/3_02.jpg" width="100%">
+					<img src="./help/3_03.jpg" width="100%">
+				</div>
+				<ol class="remind remind3">
+					<li>点击“-”减少购买人次</li>
+				</ol>
+			</div>
+			<div class="step4_all">
+				<div class="content_in step4">
+					<img src="./help/2_01.jpg" width="100%">
+					<img src="./help/2_02.jpg" width="100%">
+					<div class="step4_in step_in">
+						<img src="./help/2_03.jpg" width="100%">
+						<img class="hand_04 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_04 hand hand_long" src="./help/hand_long.png" width="24%" style="display: block;">
+						<span class="submit kuang">点击“提交订单”按钮</span>
+						<span class="circle"></span>
+						<span class="step4_click"></span>
+					</div>
+				</div>
+				<ol class="remind remind4">
+					<li>点击“提交订单”</li>
+				</ol>
+			</div>
+			<div class="step5_all">
+				<div class="content_in step5">
+					<img src="./help/5_01.jpg" width="100%">
+					<div class="step5_in step_in">
+						<img src="./help/5_02.jpg" width="100%">
+						<img class="hand_05 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_05 hand hand_long" src="./help/hand_long.png" width="24%" style="display: block;">
+						<span class="submit kuang">选择第三方支付</span>
+						<span class="circle"></span>
+						<span class="step5_click"></span>
+					</div>
+					<img src="./help/5_03.jpg" width="100%">
+				</div>
+				<ol class="remind remind3">
+					<li>若“支付余额”不足，选择“其他支付方式”</li>
+				</ol>
+			</div>
+			<div class="step6_all">
+				<div class="content_in step6">
+					<img src="./help/5_01.jpg" width="100%">
+					<div class="step6_in step_in">
+						<img src="./help/5_02.jpg" width="100%">
+						<img class="hand_06 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_06 hand hand_long" src="./help/hand_long.png" width="24%" style="display: block;">
+						<span class="submit kuang">点击“提交”按钮</span>
+						<span class="circle"></span>
+						<span class="step6_click"></span>
+					</div>
+					<img src="./help/5_03.jpg" width="100%">
+				</div>
+				<ol class="remind remind6">
+					<li>7.点击“提交”按钮提交订单</li>
+				</ol>
+			</div>
+			<div class="step7_all">
+				<div class="content_in step7">
+					<div class="step7_in step_in">
+						<img src="./help/7_01.jpg" width="100%">
+						<img class="hand_07 hand hand_short" src="./help/hand_short.png" width="24%">
+						<img class="hand_07 hand" src="./help/hand_long.png" width="24%">
+						<span class="submit2 kuang">查看购买的商品记录</span>
+						<span class="circle"></span>
+						<span class="step7_click"></span>
+					</div>
+					<img src="./help/7_02.jpg" width="100%">
+					<img src="./help/7_03.jpg" width="100%">
+				</div>
+				<ol class="remind remind7">
+					<li>点击“查看夺宝记录”可查看到自己所购买的商品</li>
+				</ol>
+			</div>
+			<div class="step8_all">
+				<div class="content_in step8">
+					<img src="./help/8_01.jpg" width="100%">
+					<img src="./help/8_02.jpg" width="100%">
+					<img src="./help/8_03.jpg" width="100%">
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer_in">
+				<img class="footer_l" src="./help/arr.png" width="6%">
+				<img class="footer_r" src="./help/arr_up.png" width="6%">
+			</div>
+			<span class="new_book">新手教程（<b class="num">1</b>/8）</span>
+		</div>
+
+		<script>
+			$(function() {
+				var n = 1;
+				$(".footer_r").on("click", function() {
+
+					//通过判断按钮btn有没有active这个class名判断是否已经点击过
+					if($(this).hasClass("active")) {
+						//如果有了active，假设已经点击过了
+						//执行你的代码
+						//把active去掉
+						$(this).attr('src', './help/arr_up.png');
+						$(this).removeClass("active");
+						$('.remind').show();
+					} else {
+						//没有active，假设还没有点击过
+						//执行你的代码
+						$(this).addClass("active");
+						$(this).attr('src', './help/arr_down.png');
+						$('.remind').hide();
+					}
+				})
+				$('.footer_l').click(function() {
+					location.reload()
+					window.location.href = '/help.html';
+				})
+				$('.click01_2_in2').click(function() {
+					// $('.hand_00').attr({'src':'img/hand02.png'}).delay(1000).attr({'src':'img/hand02.png'}).delay(1000).attr({'src':'img/hand03.png'})
+					$('.step1_all').hide();
+					$('.step2_all').show();
+					n++;
+					$('.num').html(n);
+					clearInterval(timer2);
+				})
+				$('.step2_click').click(function() {
+					$('.step2_all').hide();
+					$('.step3_all').show();
+					n++;
+					$('.num').html(n);
+				})
+				$('.step3_click').click(function() {
+					$('.step3_all').hide();
+					$('.step4_all').show();
+					n++;
+					$('.num').html(n);
+				})
+				$('.step4_click').click(function() {
+					$('.step4_all').hide();
+					$('.step5_all').show();
+					n++;
+					$('.num').html(n);
+				})
+				$('.step5_click').click(function() {
+					$('.step5_all').hide();
+					$('.step6_all').show();
+					n++;
+					$('.num').html(n);
+				})
+				$('.step6_click').click(function() {
+					$('.step6_all').hide();
+					$('.step7_all').show();
+					n++;
+					$('.num').html(n);
+				})
+				$('.step7_click').click(function() {
+					$('.step7_all').hide();
+					$('.step8_all').show();
+					n++;
+					$('.num').html(n);
+				})
+
+				timer = setInterval(run_scroll, 1000);
+
+				function run_scroll() {
+					var top_scoll = $('.1_05').offset().top;
+					if(top_scoll < 400) {
+						$('.click01_in').show();
+						$('.choose').show();
+						$('.step1_out1').hide()
+						$('.content_in img').css('float', 'none');
+					} else {
+						$('.choose').hide();
+						$('.click01_in').hide();
+						$('.step1_out1').show();
+						$('.click01_2_in').hide();
+						$('.step1_out2').hide();
+					}
+				}
+
+				function run_scroll2() {
+					var top_scoll2 = $('1_05').offset().top;
+					if(top_scoll2 < 400) {
+						$('.step1_out2').show();
+					} else {
+						$('.step1_out2').hide();
+					}
+				}
+				$('.click01_in').click(function() {
+					$('.click01_2_in').show();
+					$('.step1_out2').show();
+					$('.choose').hide();
+					$('.click01_in').hide();
+					clearInterval(timer);
+					//  timer2 = setInterval(run_scroll2, 500);
+					$('.step1_all .content_in').css('overflow', 'hidden');
+
+				});
+				var num = 0;
+
+				function start() {
+					num += 3;
+					$('.hand_long').toggle();
+				}
+				timer2 = setInterval(start, 350)
+			})
+		</script>
+
+	</body>
+
+</html>

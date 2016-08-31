@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>w</title>
+		   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"> 
+		<style type="text/css">
+     
+      #content p{margin: 0;}
+      #content img{    display: block;
+    margin: 0 auto;}
+      </style>
+	</head> 
+	<body> 
+		<div class="page-group">
+        	<div class="page page-current">
+        		
+	        	<div class="content infinite-scroll infinite-scroll-bottom" >
+        		
+			          <div class="list-block media-list">
+						    <ul id='list'></ul>
+					  </div>
+			          <!-- 加载提示符 -->
+			          <div class="infinite-scroll-preloader">
+			              <div class="preloader"></div>
+			          </div>
+			    </div>
+			    
+			    
+	        </div>
+	        
+	        
+
+	    </div>
+		<div class="popup popup-about" id='content'>
+				  <div class="content-block" >
+				    <p>About</p>
+				    <p><a href="#" class="close-popup">Close popup</a></p>
+				    <p>Lorem ipsum dolor ...</p>
+				  </div>
+		</div>	 
+		 
+		<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+		<script type="text/javascript" charset="utf-8">
+		     
+		</script>
+		<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+		<script type="text/javascript" charset="utf-8">
+			$.init();
+			var loading = false,lastIndex=0,page=0;
+			var goods_body = {};
+			api_loading(++page);
+			$(document).on('click','.open-about', function () {
+  $.popup('.popup-about');
+});
+		     function api_loading(page){
+		     	$.ajax({
+				type: "get",
+				url: "/api_1yyg",
+				data:{Page:page},
+				async: true,
+				success: function(data) {
+					 var ul = document.getElementById('list');
+					$.each(data, function(index) {
+						var li = document.createElement('li');
+					 goods_body[this.id] = this.content;
+					 li.innerHTML = 
+						        '<a href="#" class="item-link item-content" data-id='+this.id+'>'+
+						          '<div class="item-media"><img src="http://m.yungou163.com/data/uploads/'+this.thumb+'" style="width: 4rem;"></div>'+
+						          '<div class="item-inner">'+
+						            '<div class="item-title-row">'+
+						              '<div class="item-title">'+this.title+'</div>'+
+						              '<div class="item-after">$'+this.money+'</div>'+
+						            '</div>'+
+						            '<div class="item-subtitle">'+this.title2+'</div>'+
+						            '<div class="item-text">id:'+this.id+'</div>'+
+						          '</div>'+
+						        '</a>';
+						        ul.appendChild(li);
+					});
+					 
+				 
+				},
+			 
+				});
+		     	
+		     }
+		     
+		    $(document).on('infinite', '.infinite-scroll-bottom',function() {  
+		    		 
+			  		api_loading(++page); 
+			        $.refreshScroller(); 
+	    	});
+		   	$(document).on('click', '.item-link',function() {  
+		    	
+			  	  document.getElementById('content').innerHTML = '<a href="#" class="button button-light close-popup">关闭</a>' + goods_body[this.dataset.id] ;
+			  	  $.popup('.popup-about');
+			  	  
+			  	  
+	    	});
+		 
+		</script>
+	</body>
+
+</html>

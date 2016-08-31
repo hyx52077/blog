@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>w</title>
+		   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"> 
+		<style type="text/css">
+     
+      #content p{margin: 0;}
+      #content img{    display: block;
+    margin: 0 auto;}
+      </style>
+	</head> 
+	<body> 
+		<div class="page-group">
+        	<div class="page page-current"> 
+        		<header class="bar bar-nav">
+   
+  <a  href="#" class="button button-link button-nav pull-right open-category_list">
+    分类
+    <span class="icon icon-right"></span>
+  </a> 
+</header>
+	        	<div class="content infinite-scroll infinite-scroll-bottom" >
+        		
+			          <div class="list-block media-list">
+						    <ul id='list'></ul>
+					  </div>
+			          <!-- 加载提示符 -->
+			          <div class="infinite-scroll-preloader">
+			              <div class="preloader"></div>
+			          </div>
+			    </div> 
+	        </div> 
+	    </div>
+		<div class="popup popup-about" id='content'>
+				  <div class="content-block" >
+				    <p>About</p>
+				    <p><a href="#" class="close-popup">Close popup</a></p>
+				    <p>Lorem ipsum dolor ...</p>
+				  </div>
+		</div>	 
+		<div class="popup popup-category_list" id='category_list'>
+		 
+			<a href="#" class="button button-light close-popup">关闭</a>
+				  <div class="list-block media-list" >
+				    <ul id="category_list_ul">  </ul>
+				  </div>
+		</div>	  
+		<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+		<script type="text/javascript" charset="utf-8">
+		     
+		</script>
+		<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+		<script type="text/javascript" charset="utf-8">
+			$.init();
+			var loading = false,lastIndex=0,page=0,category='exgh';
+			var goods_body = {};
+			api_loading(++page,category);
+			$(document).on('click','.open-about', function () {
+  $.popup('.popup-about');
+});			
+		     function api_loading(page,category){
+
+				 loading = !loading;
+		     	$.ajax({
+				type: "get",
+				url: "/duobao369",
+				data:{page_no:page,category_id:category},
+				async: true,
+				success: function(data) {
+					loading = !loading;
+					 var ul = document.getElementById('list');
+					$.each(data.data, function(index) {
+					 var li = document.createElement('li');
+					 // background-color: #FFECB5;
+					 if(this.isget){
+					 	li.style.backgroundColor = '#FFF0DE';
+					 }
+					 var img = this.thumb_slide.split('|');
+					 var imglist = '';
+					 $.each(img,function(index){
+					 	imglist +=   '<img src="'+this+'" style="width:20%;" />';
+					 });
+					 li.innerHTML = 
+						        '<a href="#" class="item-link item-content" data-id='+this.goods_id+'>'+
+						          '<div class="item-media"><img src="'+this.thumb_home+'" style="width: 4rem;"></div>'+
+						          '<div class="item-inner">'+
+						            '<div class="item-title-row">'+
+						              '<div class="item-title">'+this.title+'</div>'+
+						              '<div class="item-after">$'+this.price+'</div>'+
+						            '</div>'+
+						            '<div class="item-subtitle">'+this.description+'</div>'+
+						            '<div class="item-text" style="height:auto;">'+imglist+'</div>'+
+						          '</div>'+
+						        '</a>';
+				        ul.appendChild(li);
+					});
+					 
+				 
+				},
+			 
+				});
+		     	
+		     }
+		     $.ajax({
+				type: "get",
+				url: "http://v1.mob.api.duobao369.com/prize/category_list", 
+				async: true,
+				dataType:'json',//服务器返回json格式数据
+				success: function(data) {
+					 var ul = document.getElementById('category_list_ul');
+					 
+					 $.each(data.data, function(index) {
+					 	var li = document.createElement('li'); 
+					 	li.innerHTML = 
+						        '<a href="#" class="item-link item-content" data-id='+this.id+'>'+
+						           '<div class="item-inner">'+
+						             '<div class="item-title">'+this.name+'</div>'+
+						           '</div>'+
+						        '</a>';
+				        ul.appendChild(li);
+					 });
+					$(document).on('click', '#category_list_ul .item-link',function() {  
+		   		 		 category = this.dataset.id;
+		   		 		 page = 0;
+		   		 		 document.getElementById('list').innerHTML = '';
+		   		 		 api_loading(++page,category); 
+				  	  $.closeModal('.popup-category_list');  
+		    		});
+				},
+			 
+				});
+		     
+		    $(document).on('infinite', '.infinite-scroll-bottom',function() {
+					if(loading){return ; }
+			  		api_loading(++page,category); 
+			        $.refreshScroller(); 
+	    	});
+		   	$(document).on('click', '#list .item-link',function() {   
+		   		var id = this.dataset.id;
+		   		var t = this;
+				$.ajax({
+					url:'/get_duobaogoods_row',
+					type: "get",
+					data:{
+						getid:id
+					},
+					async: true,
+					success: function(data){
+						var title = '未收藏';
+
+						if( typeof(data.goods_id) == "undefined" ){
+							title = '未收藏';
+						}else {
+							title = '已收藏';
+						}
+						document.getElementById('content').innerHTML = '<header class="bar bar-nav">'+
+						'<a class="icon icon-left pull-left close-popup"></a>	'+
+						'<a class="icon icon-star pull-right addgoods" data-id='+ t.dataset.id +'></a> <h1 class="title">'+title+'</h1>' +
+						'</header><div class="content-block">' + t.innerHTML +"</div>";
+					}
+				})
+
+			  	  $.popup('.popup-about'); 
+	    	});
+	    	
+		 	$(document).on('click','.open-category_list',function(){
+			  	   $.popup('.popup-category_list');  
+		 	});
+		 	$(document).on('click','.addgoods', function () {
+		 		var id = this.dataset.id;
+			      $.confirm('确定后加入收藏', function () {
+					  $.ajax({
+						  url: '/get_duobaogoods_row',
+						  type: "get",
+						  data: {
+							  add: id
+						  },
+						  async: true,
+						  success: function (data) {
+
+							  console.log(data);
+							  if (typeof(data.res) == "undefined") {
+								  $.alert('收藏成功');
+							  } else {
+								  $.alert('已收藏');
+							  }
+						  }
+					  });
+				  });
+		  });
+		</script>
+	</body>
+
+</html>
